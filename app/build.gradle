@@ -1,0 +1,180 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.github.joelarmah.customerkeeper'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.github.joelarmah.customerkeeper"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
+    }
+    kotlinOptions {
+        jvmTarget = '18'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+}
+
+dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    def arch_lifecycle_version = '2.6.1'
+    def retrofit_version = '2.9.0'
+    def hilt_view_model = '1.0.0-alpha03'
+    def room_version ="2.5.2"
+    def hilt_version = '2.44'
+    def coroutines_version = '1.7.3'
+
+    /** Android **/
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.paging:paging-runtime-ktx:3.2.0'
+
+    /** Google Play **/
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:18.0.1'
+
+    /** Import the BoM for the Firebase platform **/
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-dynamic-links-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    /** Android Lifecycle extensions**/
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$arch_lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_lifecycle_version"
+
+    /** Retrofit android client **/
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+
+    /** OneSignal **/
+    implementation 'com.onesignal:OneSignal:4.8.6'
+
+    /** Circle Indicator **/
+    // implementation 'me.relex:circleindicator:2.1.6'
+
+    /** Dagger Hilt **/
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    /** Dagger Hilt ViewModel **/
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_view_model"
+//    kapt "androidx.hilt:hilt-compiler:$hilt_view_model"
+
+    /** Coil **/
+    implementation('io.coil-kt:coil:1.3.2')
+
+    /** vvalidator **/
+    implementation 'com.afollestad:vvalidator:0.5.2'
+
+    /** view pager dots **/
+    // implementation 'com.afollestad:viewpagerdots:1.0.0'
+    // implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+    /** Assent **/
+    implementation 'com.afollestad.assent:core:3.0.0-RC4'
+    implementation 'com.afollestad.assent:rationales:3.0.0-RC4'
+
+    /** Country Code Picker **/
+    implementation 'com.hbb20:ccp:2.7.1'
+
+    /** OTP **/
+    // implementation 'com.github.mukeshsolanki:android-otpview-pinview:3.1.0'
+
+    /** Tab layout **/
+    // implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:3.0.0'
+
+    /** Circular ImageView **/
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    /** Material Dialogs **/
+    implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
+
+    /** Paystack **/
+    // implementation 'co.paystack.android:paystack:3.1.2'
+
+    /** Currency EditText **/
+    // implementation 'com.cottacush:CurrencyEditText:0.0.7'
+
+    /** Lottie **/
+    implementation 'com.airbnb.android:lottie:4.1.0'
+
+    /** Ucrop **/
+    // implementation 'com.github.yalantis:ucrop:2.2.6'
+
+    /** Skeleton Shimmer **/
+    // implementation 'com.ethanhua:skeleton:1.1.2'
+    // implementation 'io.supercharge:shimmerlayout:2.1.0'
+
+    /** Pin pad **/
+    // implementation 'com.hextremelabs.pinpad:pinpad:0.1.1'
+
+    /** Material Loading Button **/
+    implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
+
+    /** Lib Phone Number **/
+    implementation 'io.michaelrocks:libphonenumber-android:8.12.52'
+
+    /** Currency EditText **/
+    // implementation 'me.abhinay.input:currency-edittext:1.1'
+
+    /** Room **/
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    // kapt "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
+
+    /** RecyclerViewSwipeDecorator **/
+    // implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.3'
+
+    /** Recycler View Animators **/
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+
+    /** Banner **/
+    // implementation 'com.github.cesarferreira:MaterialComponent.Banner:0.14.0'
+
+    /** Tests **/
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+
+    testImplementation "androidx.test:core:1.5.0"
+    testImplementation "androidx.test:core-ktx:1.5.0"
+
+    testImplementation 'org.robolectric:robolectric:4.5.1'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
